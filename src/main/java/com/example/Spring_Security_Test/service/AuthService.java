@@ -43,10 +43,10 @@ public class AuthService {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        User customer = userRepository.findByEmail(loginRequest.getEmail())
+        User user = userRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
-        String accessToken = jwtService.createAccessToken(customer);
-        String refreshToken = jwtService.createRefreshToken(customer);
+        String accessToken = jwtService.createAccessToken(user);
+        String refreshToken = jwtService.createRefreshToken(user);
 
         return new JwtResponse(accessToken, refreshToken);
     }

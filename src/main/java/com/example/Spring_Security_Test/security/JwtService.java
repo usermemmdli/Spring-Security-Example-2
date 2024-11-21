@@ -42,7 +42,7 @@ public class JwtService {
     public Claims validateToken(String token) {
         try {
             return Jwts.parserBuilder()
-                    .setSigningKey(getSignKey()) // Secret key kontrolü
+                    .setSigningKey(getSignKey())
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
